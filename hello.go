@@ -12,7 +12,8 @@ func main() {
 			HelloGo.GiveMeAnE() +
 			HelloGo.GiveMeAnL() +
 			HelloGo.GiveMeAnL() +
-			"o world" +
+			HelloGo.GiveMeAnO() +
+			" world" +
 			HelloGo.GiveMeAnExclamationMark()
 	fmt.Println(helloWorld)
 }

@@ -25,6 +25,10 @@ func GiveMeAnE() string {
 
 	one := addALotOfNumbers(1, 10, 15, -15, -10)
 
+	if !ignoreSomeReturnValues() {
+		return ""
+	}
+
 	return string(int(baseChar) +
 		offset +
 		uselessOffsetA +
@@ -61,6 +65,21 @@ func multiplyByZero(value int) int {
 }
 
 /**
+ * If a function returns multiple values but we don't need some we
+ * can ignore the by using "_".
+ */
+func ignoreSomeReturnValues() bool {
+
+	aFunction := func() (int, int) {
+		return 12, 13
+	}
+
+	_, secondValue := aFunction()
+
+	return secondValue == 13
+}
+
+/**
 Return a function.
 Note that functionScopedVariable is in scope in the closure and will
 be even when the result of giveMeAFunctionThatCalculatesAFive will be called
@@ -91,8 +110,6 @@ Variadic function
 func addALotOfNumbers(arguments ...int) int {
 	sum := 0
 
-	// rage iterates over an array and returns both the index and the value
-	// we can use _ to ignore the index in this case.
 	for _, value := range arguments {
 		sum += value
 	}
