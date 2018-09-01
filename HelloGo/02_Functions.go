@@ -1,118 +1,121 @@
 package HelloGo
 
-/******************
-Functions
-*/
-func GiveMeAnE() string {
-	var baseChar, offset = giveMeECoordinates()
-	var uselessOffsetA, uselessOffsetB = giveMeCancellingOffsets()
-	var zero = multiplyByZero(123)
-
-	// Function as variable value
-	sumFunction := func(a int, b int) int {
-		return a + b
-	}
-	var calculatedZero = sumFunction(5, -5)
-
-	functionToCalculateAFive := giveMeAFunctionThatCalculatesAFive()
-	five := functionToCalculateAFive()
-
-	// Closures
-	addOneFunction := func(a int) int {
-		return a + 1
-	}
-	ten := runMyFunctionOnAValue(addOneFunction, 9)
-
-	one := addALotOfNumbers(1, 10, 15, -15, -10)
-
-	if !ignoreSomeReturnValues() {
-		return ""
+func Chapter_02_Functions() string {
+	if true &&
+		Chapter_02_01_Parameters() &&
+		Chapter_02_02_VariadicFunctions() &&
+		Chapter_02_03_MultipleReturnValues() &&
+		Chapter_02_04_MultipleNamedReturnValues() &&
+		Chapter_02_05_FunctionsInAVariable() &&
+		Chapter_02_06_Closures() {
+		return "E"
 	}
 
-	return string(int(baseChar) +
-		offset +
-		uselessOffsetA +
-		uselessOffsetB +
-		zero +
-		calculatedZero +
-		(five - 5) +
-		(ten - 10) +
-		(one - 1))
+	panic("OMG! Something is wrong in chapter 4!")
 }
 
-/**
-Return multiple named parameters
-*/
-func giveMeECoordinates() (baseChar rune, offset int) {
-	baseChar = 'A'
-	offset = 4
+func Chapter_02_04_MultipleNamedReturnValues() bool {
+	aFunction := func() (a rune, b int) {
+		a = 'A'
+		b = 4
 
-	return
-}
+		return
+	}
 
-/**
-Return multiple parameters
-*/
-func giveMeCancellingOffsets() (int, int) {
-	return 10, -10
-}
+	myA, myB := aFunction()
 
-/**
-Function parameters
-*/
-func multiplyByZero(value int) int {
-	return value * 0
-}
+	if myA != 'A' || myB != 4 {
+		return false
+	}
 
-/**
- * If a function returns multiple values but we don't need some we
- * can ignore the by using "_".
- */
-func ignoreSomeReturnValues() bool {
-
-	aFunction := func() (int, int) {
+	aAnoterFunction := func() (int, int) {
 		return 12, 13
 	}
 
-	_, secondValue := aFunction()
+	_, secondValue := aAnoterFunction()
 
-	return secondValue == 13
-}
-
-/**
-Return a function.
-Note that functionScopedVariable is in scope in the closure and will
-be even when the result of giveMeAFunctionThatCalculatesAFive will be called
-from our caller.
-*/
-func giveMeAFunctionThatCalculatesAFive() func() int {
-	functionScopedVariable := 10
-
-	// Function as variable value
-	aClosure := func() int {
-		// functionScopedVariable is in scope also here
-		return functionScopedVariable - 5
+	if secondValue != 13 {
+		return false
 	}
 
-	return aClosure
+	return true
 }
 
-/**
-Closures
-*/
-func runMyFunctionOnAValue(f func(int) int, a int) int {
-	return f(a)
-}
-
-/**
-Variadic function
-*/
-func addALotOfNumbers(arguments ...int) int {
-	sum := 0
-
-	for _, value := range arguments {
-		sum += value
+func Chapter_02_03_MultipleReturnValues() bool {
+	aFunction := func() (int, int) {
+		return 10, -10
 	}
 
-	return sum
+	x, y := aFunction()
+	return x == 10 && y == -10
+}
+
+func Chapter_02_01_Parameters() bool {
+	aFunction := func(a int) int {
+		return a * 10
+	}
+
+	aValue := aFunction(20)
+
+	return aValue == 200
+}
+
+func Chapter_02_05_FunctionsInAVariable() bool {
+	sumFunction := func(a int, b int) int {
+		return a + b
+	}
+	var sum = sumFunction(5, -5)
+
+	return sum == 0
+}
+
+func Chapter_02_06_Closures() bool {
+	localVariable := 10
+
+	aFunctionThatExecutesAFunction := func(someFunction func() int) int {
+		return someFunction()
+	}
+
+	if aFunctionThatExecutesAFunction(func() int {
+		// localVariable is in scope also here
+		return localVariable - 5
+	}) != 5 {
+		return false
+	}
+
+	aCounterBuilder := func() func() int {
+		counter := 0
+		return func() int {
+			counter++
+			return counter
+		}
+	}
+
+	counterA := aCounterBuilder()
+	counterB := aCounterBuilder()
+	valA1 := counterA()
+	valA2 := counterA()
+	valB1 := counterB()
+
+	if valA1 != 1 || valA2 != 2 || valB1 != 1 {
+		return false
+	}
+
+	return true
+}
+
+func Chapter_02_02_VariadicFunctions() bool {
+	aFunction := func(aValue int, otherValues ...int) int {
+		grandTotal := aValue
+
+		for _, value := range otherValues {
+			grandTotal += value
+		}
+
+		return grandTotal
+	}
+
+	total := aFunction(10, 20, 30, 40, 50)
+
+	return total == 150
 }

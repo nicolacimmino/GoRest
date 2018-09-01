@@ -1,17 +1,17 @@
 package HelloGo
 
-func GiveMeAnO() string {
+func Chapter_04_ControlStructures() string {
 
-	if doIfsWork() &&
-		doLoopsWork() &&
-		doesSwitchWork() {
-		return "O"
+	if Cahpter_04_01_If() &&
+		Chapeter_04_02_Loops() &&
+		Chapeter_04_03_Switch() {
+		return "L"
 	}
 
-	return ""
+	panic("OMG! Something is wrong in chapter 4!")
 }
 
-func doIfsWork() bool {
+func Cahpter_04_01_If() bool {
 	anInt := 32
 
 	if anInt != 32 {
@@ -37,7 +37,7 @@ func doIfsWork() bool {
 	return true
 }
 
-func doLoopsWork() bool {
+func Chapeter_04_02_Loops() bool {
 
 	// A classic for
 	aValue := 0
@@ -73,7 +73,7 @@ myLoop:
 	return true
 }
 
-func doesSwitchWork() bool {
+func Chapeter_04_03_Switch() bool {
 	aValue := 145
 
 	// A standard switch

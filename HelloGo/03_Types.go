@@ -6,35 +6,25 @@ import (
 	"unsafe"
 )
 
-/******************
-Types
-*/
-func GiveMeAnL() string {
+func Chapter_03_Types() string {
 
-	if convertingIntToSmallerIntTruncates() &&
-		convertingFloatToSmallerIntTruncates() &&
-		isRuneAliasForInt32() &&
-		isBoolWorking() &&
-		isByteWorking() &&
-		doIntegersWork() &&
-		doUnsignedIntegersWork() &&
-		doPointersWork() &&
-		doStringsWork() &&
-		doFloatsWork() &&
-		doTypeAssertionsWork() {
+	if true &&
+		Chapter_03_01_Booleans() &&
+		Chapter_03_02_Bytes() &&
+		Chapter_03_03_Floats() &&
+		Chapter_03_04_Integers() &&
+		Chapter_03_05_Strings() &&
+		Chapter_03_06_Runes() &&
+		Chapter_03_07_Pointers() &&
+		Chapter_03_08_TypeConversions() &&
+		Chapter_03_09_TypeAssertions() {
 		return "L"
 	}
 
-	return ""
+	panic("OMG! Something is wrong in chapter 4!")
 }
 
-/**
- * 03.1 bool
- *
- * Boolean can have only "true" or "false" value. There is no implicit conversion
- * from 0, 1, empty string etc as in some other languages.
- */
-func isBoolWorking() bool {
+func Chapter_03_01_Booleans() bool {
 	b := true
 
 	// You can apply the negate operator to a bool
@@ -47,12 +37,7 @@ func isBoolWorking() bool {
 	return true
 }
 
-/**
- * 03.2 byte
- *
- * The byte type is an alias for uint8.
- */
-func isByteWorking() bool {
+func Chapter_03_02_Bytes() bool {
 	var b byte = 0
 
 	// We can find the max value a byte can hold by wrapping it around below zero,
@@ -65,12 +50,7 @@ func isByteWorking() bool {
 	return maxByteValue == 255 && b == 2
 }
 
-/**
- * 03.3 int int8 int16 int32 int64
- *
- * All the intX types are signed integers.
- */
-func doIntegersWork() bool {
+func Chapter_03_04_Integers() bool {
 	// How big is an int? It depends on the architecture your program is being
 	// compiled for. It will be 32-bit on a 32-bit processor and 64 on a 64-bit
 	// processor, so you'll need to be careful if the values you are storing
@@ -86,15 +66,6 @@ func doIntegersWork() bool {
 		return false
 	}
 
-	return true
-}
-
-/**
- * 03.4 uint uint8 uint16 uint32 uint64
- *
- * All the uintX types are un-signed integers.
- */
-func doUnsignedIntegersWork() bool {
 	// How big is a uint? It depends on the architecture your program is being
 	// compiled for. It will be 32-bit on a 32-bit processor and 64 on a 64-bit
 	// processor, so you'll need to be careful if the values you are storing
@@ -120,12 +91,7 @@ func doUnsignedIntegersWork() bool {
 	return true
 }
 
-/**
- * 03.5 uintptr
- *
- * Note there is no pointer arithmetic in Go.
- */
-func doPointersWork() bool {
+func Chapter_03_07_Pointers() bool {
 	var anInt32 int32 = 0
 
 	// int32Pointer will be of type uintptr, note this doesn't mean that it points
@@ -144,7 +110,7 @@ func doPointersWork() bool {
 	return true
 }
 
-func doFloatsWork() bool {
+func Chapter_03_03_Floats() bool {
 	var aFloat32 float32 = 1.1
 
 	twoFloat := float32(2)
@@ -180,10 +146,7 @@ func doFloatsWork() bool {
 	return true
 }
 
-/**
- * The rune type is just an alias for int32 and can contain a single unicode character.
- */
-func isRuneAliasForInt32() bool {
+func Chapter_03_06_Runes() bool {
 	// As a literal a rune is enclosed in single quotes.
 	var aRune = 'A'
 
@@ -198,10 +161,7 @@ func isRuneAliasForInt32() bool {
 	return false
 }
 
-/**
- * 03.6 string
- */
-func doStringsWork() bool {
+func Chapter_03_05_Strings() bool {
 	// A string literal is enclosed in double quotes.
 	var aString = "語Test"
 
@@ -280,21 +240,25 @@ func doStringsWork() bool {
 	return true
 }
 
-func convertingIntToSmallerIntTruncates() bool {
+func Chapter_03_08_TypeConversions() bool {
 	// Converting an int65 to an int8 truncates the higher bits
 	var anInteger = int64(320)
 	var an8BitInteger = int8(anInteger)
-	return an8BitInteger == (320 & 255)
-}
+	if an8BitInteger != (320 & 255) {
+		return false
+	}
 
-func convertingFloatToSmallerIntTruncates() bool {
 	// Converting a float32 to a int8 converts to int and truncates the higher bits
 	var aFloat32 = float32(320.32)
 	var another8BitInteger = int8(aFloat32)
-	return another8BitInteger == (320 & 255)
+	if another8BitInteger != (320 & 255) {
+		return false
+	}
+
+	return true
 }
 
-func doTypeAssertionsWork() bool {
+func Chapter_03_09_TypeAssertions() bool {
 
 	var aValue interface{} = "Test"
 
