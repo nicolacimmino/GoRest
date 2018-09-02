@@ -1,7 +1,7 @@
 package HelloGo
 
 func Chapter_02_Functions() string {
-	if true &&
+	if ChapterIndex() &&
 		Chapter_02_01_Parameters() &&
 		Chapter_02_02_VariadicFunctions() &&
 		Chapter_02_03_MultipleReturnValues() &&

@@ -2,16 +2,17 @@ package HelloGo
 
 func Chapter_05_ArrayAndSlices() string {
 
-	if Cahpter_05_01_Arrays() &&
-		Cahpter_05_02_Slices() &&
-		Cahpter_05_03_Range() {
+	if ChapterIndex() &&
+		Chapter_05_01_Arrays() &&
+		Chapter_05_02_Slices() &&
+		Chapter_05_03_Range() {
 		return "O"
 	}
 
 	panic("OMG! Something is wrong in chapter 5!")
 }
 
-func Cahpter_05_01_Arrays() bool {
+func Chapter_05_01_Arrays() bool {
 	// An array of int with size 5
 	var anArray [5]int
 	anArray[0] = 10
@@ -37,7 +38,7 @@ func Cahpter_05_01_Arrays() bool {
 	return true
 }
 
-func Cahpter_05_02_Slices() bool {
+func Chapter_05_02_Slices() bool {
 	someNumbers := []int{10, 20, 30, 40, 50, 60}
 
 	// This is a slice of the array someNumbers. Note that aSlice
@@ -88,7 +89,7 @@ func Cahpter_05_02_Slices() bool {
 	return true
 }
 
-func Cahpter_05_03_Range() bool {
+func Chapter_05_03_Range() bool {
 	anArray := [10]int{0, 10, 20, 30, 40, 50, 60, 70, 80, 90}
 
 	// You can loop over an array using range

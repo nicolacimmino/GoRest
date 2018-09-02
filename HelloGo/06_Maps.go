@@ -2,14 +2,14 @@ package HelloGo
 
 func Chapter_06_Maps() string {
 
-	if Cahpter_06_01_Maps() {
+	if Chapter_06_01_Maps() {
 		return " "
 	}
 
 	panic("OMG! Something is wrong in chapter 6!")
 }
 
-func Cahpter_06_01_Maps() bool {
+func Chapter_06_01_Maps() bool {
 	// Declare a map
 	aMap := make(map[string]int)
 

@@ -2,16 +2,17 @@ package HelloGo
 
 func Chapter_04_ControlStructures() string {
 
-	if Cahpter_04_01_If() &&
-		Chapeter_04_02_Loops() &&
-		Chapeter_04_03_Switch() {
+	if ChapterIndex() &&
+		Chapter_04_01_If() &&
+		Chapter_04_02_Loops() &&
+		Chapter_04_03_Switch() {
 		return "L"
 	}
 
 	panic("OMG! Something is wrong in chapter 4!")
 }
 
-func Cahpter_04_01_If() bool {
+func Chapter_04_01_If() bool {
 	anInt := 32
 
 	if anInt != 32 {
@@ -37,7 +38,7 @@ func Cahpter_04_01_If() bool {
 	return true
 }
 
-func Chapeter_04_02_Loops() bool {
+func Chapter_04_02_Loops() bool {
 
 	// A classic for
 	aValue := 0
@@ -73,7 +74,7 @@ myLoop:
 	return true
 }
 
-func Chapeter_04_03_Switch() bool {
+func Chapter_04_03_Switch() bool {
 	aValue := 145
 
 	// A standard switch

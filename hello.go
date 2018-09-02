@@ -16,5 +16,7 @@ func main() {
 			o.Chapter_04_ControlStructures() +
 			o.Chapter_05_ArrayAndSlices() +
 			o.Chapter_06_Maps() +
+			o.Chapter_07_Structs() +
+			o.Chapter_08_Interfaces() +
 			o.Chapter_99_Assembly())
 }

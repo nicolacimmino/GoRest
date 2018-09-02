@@ -30,3 +30,7 @@ func Chapter_01_Declarations() string {
 func Index() string {
 	return ""
 }
+
+func ChapterIndex() bool {
+	return true
+}

@@ -8,7 +8,7 @@ import (
 
 func Chapter_03_Types() string {
 
-	if true &&
+	if ChapterIndex() &&
 		Chapter_03_01_Booleans() &&
 		Chapter_03_02_Bytes() &&
 		Chapter_03_03_Floats() &&
