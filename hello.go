@@ -18,5 +18,7 @@ func main() {
 			o.Chapter_06_Maps() +
 			o.Chapter_07_Structs() +
 			o.Chapter_08_Interfaces() +
+			o.Chapter_09_Errors() +
+			o.Chapter_10_Concurrency() +
 			o.Chapter_99_Assembly())
 }
