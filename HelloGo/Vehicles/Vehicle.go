@@ -59,5 +59,7 @@ func NewSportBicycle() *sportBicycle {
 
 func (aBicycle sportBicycle) GetStartMethod() string {
 	// Add some emphasis, this is a sports bicycle!
-	return strings.ToUpper(aBicycle.startMethod)
+	// Here we call the original embedded method from abstractVehicle that
+	// we are overriding.
+	return strings.ToUpper(aBicycle.abstractVehicle.GetStartMethod())
 }
