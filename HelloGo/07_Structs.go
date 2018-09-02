@@ -1,6 +1,8 @@
 package HelloGo
 
-import "HelloGo/HelloGo/Vehicles"
+import (
+	"HelloGo/HelloGo/Vehicles"
+)
 
 func Chapter_07_Structs() string {
 
@@ -8,7 +10,8 @@ func Chapter_07_Structs() string {
 		Chapter_07_01_DeclaringAndCreating() &&
 		Chapter_07_02_Methods() &&
 		Chapter_07_03_AnonymousStructs() &&
-		Chapter_07_04_ConstructorMethods() {
+		Chapter_07_04_ConstructorMethods() &&
+		Chapter_07_05_Embedding() {
 		return "W"
 	}
 
@@ -73,13 +76,31 @@ func Chapter_07_04_ConstructorMethods() bool {
 	// The line below wouldn't compile.
 	//bicycle := Vehicles.bicycle{}
 
-	if Vehicles.FindOutHowToStart(bicycle) != "Pedal" {
+	if bicycle == nil {
+		return false
+	}
+
+	return true
+}
+
+func Chapter_07_05_Embedding() bool {
+	// See the Vehicle package for the actual declarations.
+
+	// There are no automatic constructors in Go, it's convention
+	// to have an exported method NewType() to act as the constructor,
+	// this needs to be called explicitly.
+	bicycle := Vehicles.NewBicycle()
+
+	// The GetStartMethod() method exists on both bicycle and car but
+	// it's implemented only once in abstract vehicle and made available
+	// to both structs through embedding. See the Vehicles package.
+	if bicycle.GetStartMethod() != "Pedal" {
 		return false
 	}
 
 	car := Vehicles.NewCar()
 
-	if Vehicles.FindOutHowToStart(car) != "Ignition key" {
+	if car.GetStartMethod() != "Ignition key" {
 		return false
 	}
 
