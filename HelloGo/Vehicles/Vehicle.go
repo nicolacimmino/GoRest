@@ -1,5 +1,7 @@
 package Vehicles
 
+import "strings"
+
 /**
 We declare the interface, anything that implement GetStartMethod()
 can be used as Vehicle.
@@ -41,4 +43,21 @@ type bicycle struct {
 
 func NewBicycle() *bicycle {
 	return &bicycle{abstractVehicle{"Pedal"}}
+}
+
+/**
+As above for a sportBicycle.
+Here we override the GetStartMethod() that was defined in abstractVehicle to return a capitalised version of startMethod.
+*/
+type sportBicycle struct {
+	abstractVehicle
+}
+
+func NewSportBicycle() *sportBicycle {
+	return &sportBicycle{abstractVehicle{"Pedal"}}
+}
+
+func (aBicycle sportBicycle) GetStartMethod() string {
+	// Add some emphasis, this is a sports bicycle!
+	return strings.ToUpper(aBicycle.startMethod)
 }

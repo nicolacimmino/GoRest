@@ -11,7 +11,8 @@ func Chapter_07_Structs() string {
 		Chapter_07_02_Methods() &&
 		Chapter_07_03_AnonymousStructs() &&
 		Chapter_07_04_ConstructorMethods() &&
-		Chapter_07_05_Embedding() {
+		Chapter_07_05_Embedding() &&
+		Chapter_07_06_OverridingEmbeddedMethods() {
 		return "W"
 	}
 
@@ -86,9 +87,6 @@ func Chapter_07_04_ConstructorMethods() bool {
 func Chapter_07_05_Embedding() bool {
 	// See the Vehicle package for the actual declarations.
 
-	// There are no automatic constructors in Go, it's convention
-	// to have an exported method NewType() to act as the constructor,
-	// this needs to be called explicitly.
 	bicycle := Vehicles.NewBicycle()
 
 	// The GetStartMethod() method exists on both bicycle and car but
@@ -101,6 +99,20 @@ func Chapter_07_05_Embedding() bool {
 	car := Vehicles.NewCar()
 
 	if car.GetStartMethod() != "Ignition key" {
+		return false
+	}
+
+	return true
+}
+
+func Chapter_07_06_OverridingEmbeddedMethods() bool {
+	// See the Vehicle package for the actual declarations.
+
+	sportBicycle := Vehicles.NewSportBicycle()
+
+	// The GetStartMethod() method defined in sportBicycle overrides the one
+	// in abstractBicycle and returns the startMethod all in upper case.
+	if sportBicycle.GetStartMethod() != "PEDAL" {
 		return false
 	}
 
